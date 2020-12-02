@@ -10,24 +10,49 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../42/libft_project/libft/libft.h"
 #include "man_factory.h"
 
-void clean_stdin(void) 
-{ 
-    int c; 
-  
-    while (c != '\n' && c != EOF)
-        c = getchar();
-}
-
-void    ft_mamwriter(char *name, char *s_descri, char *library, char *prototype, char *descri, char *return_v)
+void    ft_manwriter(char *name, char *s_descri, char *library, char *prototype, char *descri, char *return_v)
 {
     FILE* file = NULL;
     file = fopen(name, "w");
+
     if (file != NULL)
     {
+        fputs(BOLDWHITE, file);
+        fputs("\n\t\t\t\t\tMAN FACTORY\n\n", file);
+        fputs("\033[1m\033[37mNAME\n\t", file);
+        fputs(RESET, file);
+        fputs(name, file);
+        fputs(" - ", file);
+        fputs(s_descri, file);
+        fputs("\n\n\033[1m\033[37mSYNOPSIS\n\t", file);
+        fputs(RESET, file);
+        fputs(library, file);
+        fputs("\n\n\t", file);
+        fputs(prototype, file);
+        fputs("\n\n\033[1m\033[37mDESCRIPTION\n\t", file);
+        fputs(RESET, file);
+        fputs(descri, file);
+        fputs("\n\n\033[1m\033[37mRETURN VALUE\n\t", file);
+        fputs(RESET, file);
         fputs(return_v, file);
+        fputs("\n\n", file);
+
+        fclose(file);
+    }
+    else
+        printf("ERROR");
+}
+
+void    ft_manreader(char *name, char *s_descri, char *library, char *prototype, char *descri, char *return_v)
+{
+    ft_manwriter(name, s_descri, library, prototype, descri, return_v);
+    FILE* file = NULL;
+    file = fopen(name, "r");
+    if (file != NULL)
+    {
+        printf("\n");
         printf("%*s", 50, "MAN FACTORY\n\n");
         printf(BOLDWHITE);
         printf("NAME\n");
@@ -36,7 +61,7 @@ void    ft_mamwriter(char *name, char *s_descri, char *library, char *prototype,
         printf(BOLDWHITE);
         printf("SYNOPSIS\n");
         printf(RESET);
-        printf("\t%s\n\n%s\n\n", library, prototype);
+        printf("\t%s\n\n\t%s\n\n", library, prototype);
         printf(BOLDWHITE);
         printf("DESCRIPTION\n");
         printf(RESET);
@@ -50,8 +75,7 @@ void    ft_mamwriter(char *name, char *s_descri, char *library, char *prototype,
     }
     else
         printf("ERROR");
-    //printf("%s\n%s\n%s\n%s\n%s\n%s\n", name, s_descri, library, prototype, descri, return_v);
-}
+    }
 
 void    ft_manmaker(void)
 {
@@ -61,10 +85,21 @@ void    ft_manmaker(void)
     char    prototype[200];
     char    descri[2000];
     char    return_v[1000];
+    int     check_error;
 
+    check_error = 1;
     printf("Enter the name of your fonction : ");
-    fgets(name, 25, stdin);
-    name[ft_strlen(name) - 1] = '\0';
+    while (check_error)
+    {
+        fgets(name, 25, stdin);
+        name[ft_strlen(name) - 1] = '\0';
+        if (ft_check_file_exist(name))
+        {
+            printf("A manual page already exists for this name.\nPlease enter a new one : ");
+        }
+        else
+            check_error = 0;
+    }
     
     printf("A short description of it : ");
     fgets(s_descri, 100, stdin);
@@ -86,7 +121,7 @@ void    ft_manmaker(void)
     fgets(return_v, 1000, stdin);
     return_v[ft_strlen(return_v) - 1] = '\0';
     printf("\n");
-    ft_mamwriter(name, s_descri, library, prototype, descri, return_v);
+    ft_manreader(name, s_descri, library, prototype, descri, return_v);
 }
 
 int     main(int argc, char **argv)
@@ -94,33 +129,33 @@ int     main(int argc, char **argv)
     printf("\n");
     system("cat banner");
     char    y_or_n[2];
-    int error;
+    int     check_error;
 
-    error = 1;
+    check_error = 1;
     printf(BOLDWHITE);
     printf("Would you like to create a new manual page ? (y/n) : ");
-    while (error)
+    while (check_error)
     {
         fgets(y_or_n, 2, stdin);
         if (ft_isequal(y_or_n, "y"))
         {
             printf("\rNice lets start !\n");
-            error = 0;
-            clean_stdin();
+            check_error = 0;
+            ft_clean_stdin();
             ft_manmaker();
         }
         else if (ft_isequal(y_or_n, "n"))
         {
             printf("Ok, see you soon then !");
-            clean_stdin();
-            error = 0;
+            ft_clean_stdin();
+            check_error = 0;
         }
-        if (error)
+        if (check_error)
         {
             printf("Please answer with an \"y\" for yes or an \"n\" for no : ");
-            clean_stdin();
+            ft_clean_stdin();
         }
-        printf(RESET);
     }
+    printf(RESET);
     return (0);
 }
