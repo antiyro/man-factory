@@ -4,8 +4,6 @@ This project has been made for the people that want to create manual pages for t
 
 ## SETUP
 
-Use the package manager [pip](https://pip.pypa.io/en/stable/) to install foobar.
-
 ```bash
 cd ~/Documents/
 ```
