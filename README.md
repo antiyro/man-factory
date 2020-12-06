@@ -6,10 +6,10 @@ cd ~/Documents/
 
 git clone https://github.com/antiyro/man-factory/
 
-mv myman.sh ~/.
+<code>mv .myman.sh ~/.<code>
 
-cd
+<code>cd<code>
 
-source myman.sh
+<code>source ~/.myman.sh<code>
 
-Then you it's done ! You can use the command "myman -new" to create new man pages or open your created man pages with the command myman <the man page name you gave to it> 
+Then you it's done ! You can use the command "myman -new" to create new man pages or open your created man pages with the command myman <the man page name you gave to it>
