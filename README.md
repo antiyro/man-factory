@@ -1,6 +1,6 @@
 # MAN FACTORY
 
-This project has been made for the people that want to create manual pages for their own fonctions, commands or everything else. It is really easy to setup and modify as you want.
+This project has been made for the people that want to create manual pages for their own fonctions, commands or everything else. It is really easy to setup and modify as you want !
 
 ## SETUP
 
@@ -35,9 +35,7 @@ myman <the name you gave to your man page you want to open> # to open an already
 ```
 
 ## Contributing
-Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
-
-Please make sure to update tests as appropriate.
+This project is not optimized so every kind of contribution is welcome !
 
 ## License
 [antiyro](https://github.com/antiyro/)
