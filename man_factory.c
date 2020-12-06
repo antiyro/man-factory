@@ -15,7 +15,7 @@
 void    ft_manwriter(char *name, char *s_descri, char *library, char *prototype, char *descri, char *return_v)
 {
     FILE* file = NULL;
-    file = fopen(FILE_PATH, "w");
+    file = fopen(name, "w");
 
     if (file != NULL)
     {
@@ -49,7 +49,7 @@ void    ft_manreader(char *name, char *s_descri, char *library, char *prototype,
 {
     ft_manwriter(name, s_descri, library, prototype, descri, return_v);
     FILE* file = NULL;
-    file = fopen(FILE_PATH, "r");
+    file = fopen(name, "r");
     if (file != NULL)
     {
         printf("\n");
@@ -139,7 +139,7 @@ void    ft_manmaker(void)
 int     main(int argc, char **argv)
 {
     printf("\n");
-    system("cat banner");
+    system("cat ~/Documents/man_factory/banner"); //Change the location if needed
     char    y_or_n[2];
     int     check_error;
 
