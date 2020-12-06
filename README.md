@@ -35,7 +35,7 @@ myman <the name you gave to your man page you want to open> # to open an already
 ```
 
 ## Contributing
-This project is not optimized so every kind of contribution is welcome !
+This project is not optimized so every kind of contributions are welcome !
 
 ## License
 [antiyro](https://github.com/antiyro/)
