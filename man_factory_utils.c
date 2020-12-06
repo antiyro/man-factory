@@ -23,6 +23,7 @@ void ft_clean_stdin(void)
 int ft_check_file_exist(char *name)
 {
     FILE *file;
+
     if ((file = fopen(name, "r")))
     {
         fclose(file);
